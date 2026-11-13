@@ -1,0 +1,106 @@
+default:
+  seed: 42
+
+hyper_param:
+  lr: 1.e-4
+  epochs: 5
+
+  weight_decay: 1.e-5
+
+  logging_steps: 750
+  warmup_steps: 10
+  gradient_steps: 8
+
+  batch_size: 128
+
+  loss: "asym"
+  optim: "adamw"
+  workers: 0
+  output_dir: "outputs/train"
+  hub_name: "upar2026-track1-model"
+
+  # Augmentation
+  aug: True
+  median: True
+  horizontal_flip: True
+  random_resized_crop: True
+  affine: True
+  safe_rotate: False
+  coarse_dropout: True
+  gaussian_blur: True
+  color_jitter: True
+  rgb_shift: False
+  image_compression: True
+
+  focal_weight: 1.0
+  asym_weight: 1.0
+  aux_weight: 1.0
+
+  # Resize
+  height: 224
+  width: 224
+
+data:
+  data_path: "data/annotations/train.csv"
+  data_name: null
+  num_samples: 2
+
+losses:
+  focal:
+    alpha: 0.2
+    gamma: 2
+
+  asym:
+    gamma_neg: 4
+    gamma_pos: 1
+    clip: 0.05
+
+  weighted_bce:
+    weight:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+
+optim:
+  adamw:
+    beta: [0.9, 0.999]
+
+  sgd:
+    momentum: 0.9
